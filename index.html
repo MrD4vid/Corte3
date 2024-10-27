@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Requerimientos de Compra</title>
 </head>
 <body>
-    <p>chupamela toda</p>
+
+<h1>Requerimientos de Compra</h1>
+<form id="compraForm">
+    <label for="nombre">Nombre (máx. 20 caracteres):</label>
+    <input type="text" id="nombre" name="nombre" maxlength="20" required>
+    
+    <label for="precio">Precio (en pesos):</label>
+    <input type="text" id="precio" name="precio" required>
+
+    <label for="cantidad">Cantidad (1-20):</label>
+    <input type="number" id="cantidad" name="cantidad" min="1" max="20" required>
+
+    <div class="error" id="errorMessage"></div>
+
+    <button type="button" onclick="iniciarCompra()">Iniciar Compra</button>
+    <button type="reset">Limpiar Campos</button>
+</form>
+
+<script>
+    function iniciarCompra() {
+        const nombre = document.getElementById('nombre').value;
+        const precio = document.getElementById('precio').value;
+        const cantidad = document.getElementById('cantidad').value;
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = '';
+
+        // Validar nombre
+        if (!nombre || nombre.length > 20) {
+            errorMessage.textContent += 'El nombre debe tener máximo 20 caracteres. ';
+        }
+
+        // Validar precio (solo números)
+        const precioNumero = parseFloat(precio.replace(/[^0-9.-]+/g, ""));
+        if (isNaN(precioNumero) || precioNumero <= 0) {
+            errorMessage.textContent += 'El precio debe ser un número válido en pesos. ';
+        }
+
+        // Validar cantidad
+        if (cantidad < 1 || cantidad > 20) {
+            errorMessage.textContent += 'La cantidad debe ser un número entre 1 y 20. ';
+        }
+
+        // Si no hay errores, redirigir a la lista de productos
+        if (errorMessage.textContent === '') {
+            alert('Compra iniciada con éxito. Redirigiendo a la lista de productos...');
+            window.location.href = 'lista_productos.html'; // Cambia a la URL de la lista de productos
+        }
+    }
+</script>
+
 </body>
 </html>

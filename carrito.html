@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+    <header>
+        <h1>Carrito de Compras</h1>
+        <nav>
+            <button onclick="window.location.href='index.html'">Cancelar Compra</button>
+            <button onclick="window.location.href='productos.html'">Seguir Comprando</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="carrito">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-carrito">
+                </tbody>
+            </table>
+            <p id="costo-domicilio"></p>
+            <p id="total-compra">Total: $0</p>
+        </section>
+
+        <section id="pago">
+            <h2>Información de Pago</h2>
+            <form id="form-pago">
+                <label for="numero-tarjeta">Número de tarjeta:</label>
+                <input type="text" id="numero-tarjeta" maxlength="16" required>
+
+                <label for="expiracion">Fecha de expiración (MM/AA):</label>
+                <input type="text" id="expiracion" placeholder="MM/AA" required>
+
+                <label for="codigo-seguridad">Código de seguridad:</label>
+                <input type="password" id="codigo-seguridad" maxlength="3" required>
+
+                <label for="titular">Nombre del titular:</label>
+                <input type="text" id="titular" required>
+
+                <label for="pais">País de emisión:</label>
+                <select id="pais" required>
+                    <option value="">Seleccione un país</option>
+                    <!-- Agrega 10 países -->
+                    <option value="Colombia">Colombia</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="México">México</option>
+                    <option value="España">España</option>
+                    <option value="Estados Unidos">Estados Unidos</option>
+                    <option value="Perú">Perú</option>
+                    <option value="Brasil">Brasil</option>
+                    <option value="Uruguay">Uruguay</option>
+                </select>
+
+                <label for="tipo-tarjeta">Tipo de tarjeta:</label>
+                <select id="tipo-tarjeta" required>
+                    <option value="Mastercard">Mastercard</option>
+                    <option value="Visa">Visa</option>
+                    <option value="Prepagada">Prepagada</option>
+                </select>
+
+                <button type="reset">Limpiar Campos</button>
+                <button type="button" id="confirmar-compra" onclick="confirmarCompra()">Confirmar Compra</button>
+            </form>
+        </section>
+    </main>
+    <script src="carrito.js"></script>
+</body>
+</html>
