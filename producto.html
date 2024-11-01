@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+    <link rel="stylesheet" href="producto.css">
+</head>
+<body>
+    <header>
+        <h1>Selecciona tus Productos</h1>
+        <button onclick="cancelarCompra()">Cancelar Compra</button>
+        <button onclick="irCarrito()">Ir al Carrito</button>
+    </header>
+    <main>
+        <section id="filtros">
+            <label for="filtroCategoria">Categoría:</label>
+            <select id="filtroCategoria"></select>
+
+            <label for="filtroPrecio">Rango de Precio:</label>
+            <input type="number" id="filtroPrecioMin" placeholder="Mínimo">
+            <input type="number" id="filtroPrecioMax" placeholder="Máximo">
+            <button onclick="aplicarFiltros()">Filtrar</button>
+            <button onclick="limpiarFiltros()">Limpiar Filtros</button>
+        </section>
+
+        <section id="lista-productos"></section>
+        <section id="detalle-producto">
+            <h2>Detalle del Producto</h2>
+            <div id="producto-detalle"></div>
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" min="1" max="20">
+            <button onclick="agregarAlCarrito()">Agregar al Carrito</button>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>

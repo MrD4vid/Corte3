@@ -9,15 +9,13 @@
 <body>
     <header>
         <h1>Carrito de Compras</h1>
-        <nav>
-            <button onclick="window.location.href='index.html'">Cancelar Compra</button>
-            <button onclick="window.location.href='productos.html'">Seguir Comprando</button>
-        </nav>
+        <button onclick="cancelarCompra()">Cancelar Compra</button>
+        <button onclick="seguirComprando()">Seguir Comprando</button>
     </header>
-
     <main>
-        <section id="carrito">
-            <table>
+        <section id="resumen-compra">
+            <h2>Resumen de Compra</h2>
+            <table id="tabla-productos">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -27,56 +25,46 @@
                         <th>Acción</th>
                     </tr>
                 </thead>
-                <tbody id="tabla-carrito">
-                </tbody>
+                <tbody></tbody>
             </table>
-            <p id="costo-domicilio"></p>
-            <p id="total-compra">Total: $0</p>
+            <p id="total-compra"></p>
         </section>
 
         <section id="pago">
             <h2>Información de Pago</h2>
-            <form id="form-pago">
-                <label for="numero-tarjeta">Número de tarjeta:</label>
-                <input type="text" id="numero-tarjeta" maxlength="16" required>
+            <form id="form-pago" onsubmit="return confirmarCompra()">
+                <label for="tarjeta">Número de Tarjeta:</label>
+                <input type="text" id="tarjeta" maxlength="16" required>
 
-                <label for="expiracion">Fecha de expiración (MM/AA):</label>
-                <input type="text" id="expiracion" placeholder="MM/AA" required>
+                <label for="fecha-expiracion">Fecha de Expiración (MM/AA):</label>
+                <input type="text" id="fecha-expiracion" maxlength="5" required>
 
-                <label for="codigo-seguridad">Código de seguridad:</label>
+                <label for="codigo-seguridad">Código de Seguridad:</label>
                 <input type="password" id="codigo-seguridad" maxlength="3" required>
 
-                <label for="titular">Nombre del titular:</label>
-                <input type="text" id="titular" required>
+                <label for="nombre-titular">Nombre del Titular:</label>
+                <input type="text" id="nombre-titular" required>
 
-                <label for="pais">País de emisión:</label>
+                <label for="pais">País de Emisión:</label>
                 <select id="pais" required>
-                    <option value="">Seleccione un país</option>
-                    <!-- Agrega 10 países -->
-                    <option value="Colombia">Colombia</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="México">México</option>
-                    <option value="España">España</option>
-                    <option value="Estados Unidos">Estados Unidos</option>
-                    <option value="Perú">Perú</option>
-                    <option value="Brasil">Brasil</option>
-                    <option value="Uruguay">Uruguay</option>
+                    <!-- Opciones de países -->
+                    <option value="colombia">Colombia</option>
+                    <option value="usa">USA</option>
+                    <option value="mexico">México</option>
+                    <!-- Agregar otros países -->
                 </select>
 
-                <label for="tipo-tarjeta">Tipo de tarjeta:</label>
+                <label for="tipo-tarjeta">Tipo de Tarjeta:</label>
                 <select id="tipo-tarjeta" required>
-                    <option value="Mastercard">Mastercard</option>
-                    <option value="Visa">Visa</option>
-                    <option value="Prepagada">Prepagada</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="visa">Visa</option>
+                    <option value="prepagada">Prepagada</option>
                 </select>
 
-                <button type="reset">Limpiar Campos</button>
-                <button type="button" id="confirmar-compra" onclick="confirmarCompra()">Confirmar Compra</button>
+                <button type="submit">Confirmar Compra</button>
             </form>
         </section>
     </main>
-    <script src="carrito.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

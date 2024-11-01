@@ -1,0 +1,52 @@
+/* productos.css */
+#lista-productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.producto-card {
+    width: 200px;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.producto-card:hover {
+    transform: scale(1.05);
+}
+
+.producto-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.producto-card h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.producto-card p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.producto-card button {
+    padding: 8px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.producto-card button:hover {
+    background-color: #0056b3;
+}

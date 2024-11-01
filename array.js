@@ -1,5 +1,5 @@
     const productos = [
-    // Autos Deportivos
+    // Deportivos
     {
       id: 1,
       nombre: "Ferrari F8",
@@ -305,7 +305,7 @@
       imagen: "./img/nissan-titan.jpg"
     },
   
-    // Motocicletas
+    // Motos
     {
       id: 31,
       nombre: "Yamaha YZF-R1",

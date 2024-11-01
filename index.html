@@ -1,60 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Requerimientos de Compra</title>
-</head>
-<body>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- Contenedor principal -->
+    <main id="requerimientos-compra">
+      <!-- Título de la vista -->
+      <h1>Requerimientos de Compra</h1>
 
-<h1>Requerimientos de Compra</h1>
-<form id="compraForm">
-    <label for="nombre">Nombre (máx. 20 caracteres):</label>
-    <input type="text" id="nombre" name="nombre" maxlength="20" required>
-    
-    <label for="precio">Precio (en pesos):</label>
-    <input type="text" id="precio" name="precio" required>
+      <!-- Formulario para los detalles de compra -->
+      <form id="form-requerimientos">
+        <!-- Campo para el nombre -->
+        <label for="nombre">Nombre del Comprador (máx. 20 caracteres):</label>
+        <input type="text" id="nombre" name="nombre" maxlength="20" required />
 
-    <label for="cantidad">Cantidad (1-20):</label>
-    <input type="number" id="cantidad" name="cantidad" min="1" max="20" required>
+        <!-- Campo para el presupuesto máximo -->
+        <label for="presupuesto">Presupuesto Máximo (COP):</label>
+        <input type="number" id="presupuesto" name="presupuesto" min="0" required/>
 
-    <div class="error" id="errorMessage"></div>
+        <!-- Campo para la cantidad máxima de artículos -->
+        <label for="cantidad">Cantidad Máxima de Artículos (hasta 20):</label>
+        <input type="number" id="cantidad" name="cantidad" min="1" max="20" required/>
 
-    <button type="button" onclick="iniciarCompra()">Iniciar Compra</button>
-    <button type="reset">Limpiar Campos</button>
-</form>
+        <!-- Campo para la dirección -->
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required />
 
-<script>
-    function iniciarCompra() {
-        const nombre = document.getElementById('nombre').value;
-        const precio = document.getElementById('precio').value;
-        const cantidad = document.getElementById('cantidad').value;
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.textContent = '';
+        <!-- Selector para el tipo de entrega -->
+        <label for="entrega">Tipo de Entrega:</label>
+        <select id="entrega" name="entrega" required>
+          <option value="domicilio">Domicilio</option>
+          <option value="recoger">Recoger en tienda</option>
+        </select>
 
-        // Validar nombre
-        if (!nombre || nombre.length > 20) {
-            errorMessage.textContent += 'El nombre debe tener máximo 20 caracteres. ';
-        }
+        <!-- Botones de acción -->
+        <div class="form-buttons">
+          <button type="submit">Iniciar Compra</button>
+          <button type="reset">Limpiar Campos</button>
+        </div>
+      </form>
+    </main>
 
-        // Validar precio (solo números)
-        const precioNumero = parseFloat(precio.replace(/[^0-9.-]+/g, ""));
-        if (isNaN(precioNumero) || precioNumero <= 0) {
-            errorMessage.textContent += 'El precio debe ser un número válido en pesos. ';
-        }
-
-        // Validar cantidad
-        if (cantidad < 1 || cantidad > 20) {
-            errorMessage.textContent += 'La cantidad debe ser un número entre 1 y 20. ';
-        }
-
-        // Si no hay errores, redirigir a la lista de productos
-        if (errorMessage.textContent === '') {
-            alert('Compra iniciada con éxito. Redirigiendo a la lista de productos...');
-            window.location.href = 'lista_productos.html'; // Cambia a la URL de la lista de productos
-        }
-    }
-</script>
-
-</body>
+    <script src="index.js"></script>
+  </body>
 </html>
