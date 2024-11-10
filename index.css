@@ -32,6 +32,15 @@ h1 {
     margin-bottom: 20px;
     text-align: center;
 }
+h2{
+    font-size: 16px;
+    color: #333;
+}
+.grupoRadios{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;    
+}
 
 /* Formulario */
 #form-requerimientos {

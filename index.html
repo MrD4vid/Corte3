@@ -1,50 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Requerimientos de Compra</title>
     <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-    <!-- Contenedor principal -->
+</head>
+<body>
     <main id="requerimientos-compra">
-      <!-- Título de la vista -->
-      <h1>Requerimientos de Compra</h1>
+        <h1>Requerimientos de Compra</h1>
+        <form id="form-requerimientos">
+            <label for="nombre">Nombre del Comprador (máx. 20 caracteres):</label>
+            <input type="text" id="nombre" name="nombre" maxlength="20" required />
 
-      <!-- Formulario para los detalles de compra -->
-      <form id="form-requerimientos">
-        <!-- Campo para el nombre -->
-        <label for="nombre">Nombre del Comprador (máx. 20 caracteres):</label>
-        <input type="text" id="nombre" name="nombre" maxlength="20" required />
+            <label for="presupuesto">Presupuesto Máximo (COP):</label>
+            <input type="number" id="presupuesto" name="presupuesto" min="0" required/>
 
-        <!-- Campo para el presupuesto máximo -->
-        <label for="presupuesto">Presupuesto Máximo (COP):</label>
-        <input type="number" id="presupuesto" name="presupuesto" min="0" required/>
+            <label for="cantidad">Cantidad Máxima de Artículos (hasta 20):</label>
+            <input type="number" id="cantidad" name="cantidad"/>
 
-        <!-- Campo para la cantidad máxima de artículos -->
-        <label for="cantidad">Cantidad Máxima de Artículos (hasta 20):</label>
-        <input type="number" id="cantidad" name="cantidad" min="1" max="20" required/>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required />
 
-        <!-- Campo para la dirección -->
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" required />
+            <h2>Tipo de Entrega</h2>
+            <div class="grupoRadios">        
+              <label>
+                  <input type="radio" id="entregaSucursal" name="tipoEntrega" value="Entrega a sucursal">
+                  Entrega a sucursal
+              </label>
+              <label>
+                  <input type="radio" id="entregaDomicilio" name="tipoEntrega" value="Entrega a domicilio">
+                  Entrega a domicilio
+              </label>
+          </div>
 
-        <!-- Selector para el tipo de entrega -->
-        <label for="entrega">Tipo de Entrega:</label>
-        <select id="entrega" name="entrega" required>
-          <option value="domicilio">Domicilio</option>
-          <option value="recoger">Recoger en tienda</option>
-        </select>
-
-        <!-- Botones de acción -->
-        <div class="form-buttons">
-          <button type="submit">Iniciar Compra</button>
-          <button type="reset">Limpiar Campos</button>
-        </div>
-      </form>
+            <div class="form-buttons">
+                <button onclick="iniciarCompra()" type="button">Iniciar Compra</button>
+                <button type="reset">Limpiar Campos</button>
+            </div>
+        </form>
     </main>
-
-    <script src="index.js"></script>
+    <script src="index.js" type="text/javascript"></script>
+    <!-- <script src="array.js" type="text/javascript"></script> -->
   </body>
 </html>

@@ -1,13 +1,100 @@
 /* productos.css */
-#lista-productos {
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+header h1 {
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+header button {
+    background-color: #fff;
+    color: #007bff;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+header button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+#filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    color: #333;
+}
+
+#filtros select, #filtros input, #filtros button {
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#filtros button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#filtros button:hover {
+    background-color: #0056b3;
+}
+
+main {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#lista-productos {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 15px;
-    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .producto-card {
-    width: 200px;
     padding: 15px;
     background-color: white;
     border: 1px solid #ddd;
@@ -49,4 +136,58 @@
 
 .producto-card button:hover {
     background-color: #0056b3;
+}
+
+#detalle-producto {
+    flex: 1.5;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+
+/* Para mostrar 3 columnas en la sección de productos */
+#lista-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ahora habrá 3 columnas fijas */
+    gap: 15px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Para que las imágenes en la sección de detalles mantengan un tamaño controlado y no modifiquen el contenedor */
+#producto-detalle img {
+    max-width: 100%;
+    max-height: 300px; /* Puedes ajustar el tamaño según el diseño deseado */
+    object-fit: contain; /* Evita distorsiones manteniendo la relación de aspecto */
+    border-radius: 5px;
+}
+
+#detalle-producto h2 {
+    margin-top: 0;
+}
+
+#detalle-producto button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#detalle-producto button:hover {
+    background-color: #0056b3;
+}
+
+#detalle-producto input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
