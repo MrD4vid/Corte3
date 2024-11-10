@@ -3,7 +3,7 @@
 ## Descripción
 Este proyecto es un e-commerce para el alquiler de autos, permitiendo a los usuarios seleccionar vehículos, agregarlos al carrito, gestionar el alquiler y realizar el pago de manera eficiente y segura. La plataforma está diseñada para ser fácil de usar y cuenta con funcionalidades dinámicas como filtros de búsqueda, carrito de compras persistente, y validación de pago.
 
-![Vista del logo](images/vista-home.png)
+![Vista del logo](img/Logo.png)
 
 ## Características
 - *Listado de autos*: Muestra los vehículos disponibles para alquilar con fotos, descripciones, precios y otros detalles importantes.
