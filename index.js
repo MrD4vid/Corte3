@@ -251,40 +251,22 @@ function cargarResumenCompra() {
     document.getElementById("total-compra").textContent = `Total de Compra: COP ${total.toLocaleString()}`;
 }
 
-// Validaciones de la información de pago
-function validarNumeroTarjeta(event) {
-    const input = event.target;
-    input.value = input.value.replace(/\D/g, ""); // Solo permite números
+// Funciones de navegación
+function irCarrito() {
+    window.location.href = "carrito.html";
 }
 
-function validarNombreTitular(event) {
-    const input = event.target;
-    input.value = input.value.replace(/[^a-zA-Z\s]/g, ""); // Solo permite letras y espacios
+// Función para eliminar un producto del carrito
+function eliminarDelCarrito(idProducto) {
+    let carrito = obtenerDatos("productosSeleccionados") || [];
+    carrito = carrito.filter(item => item.id !== idProducto);
+    guardarDatos("productosSeleccionados", carrito);
+    cargarResumenCompra();
 }
 
-// Mostrar/ocultar el código de seguridad
-function toggleCodigoSeguridad() {
-    const inputCodigo = document.getElementById("codigo-seguridad");
-    inputCodigo.type = inputCodigo.type === "password" ? "text" : "password";
+function cancelarCompra() {
+    window.location.href = "index.html";
 }
-
-// Guardar la información de pago en localStorage
-function guardarInfoPago() {
-    const infoPago = {
-        tarjeta: document.getElementById("tarjeta").value,
-        fechaExpiracion: document.getElementById("fecha-expiracion").value,
-        codigoSeguridad: document.getElementById("codigo-seguridad").value,
-        nombreTitular: document.getElementById("nombre-titular").value,
-        pais: document.getElementById("pais").value,
-        tipoTarjeta: document.getElementById("tipo-tarjeta").value
-    };
-    guardarDatos("informacionPago", infoPago);
-}
-
-// Eventos para validar los campos de pago
-document.getElementById("tarjeta").addEventListener("input", validarNumeroTarjeta);
-document.getElementById("nombre-titular").addEventListener("input", validarNombreTitular);
-document.getElementById("boton-toggle-codigo").addEventListener("click", toggleCodigoSeguridad);
 
 // Función para inicializar la vista de productos o carrito
 function inicializarVista() {
@@ -300,3 +282,4 @@ function inicializarVista() {
 
 // Inicialización según la vista actual
 document.addEventListener("DOMContentLoaded", inicializarVista);
+
