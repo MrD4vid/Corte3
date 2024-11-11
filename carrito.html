@@ -36,26 +36,27 @@
 
         <section id="pago">
             <h2>Información de Pago</h2>
-            <form id="form-pago" onsubmit="return confirmarCompra()">
+            <form id="form-pago" onsubmit="return confirmarCompra(event)">
                 <label for="tarjeta">Número de Tarjeta:</label>
                 <input type="text" id="tarjeta" maxlength="16" required>
 
                 <label for="fecha-expiracion">Fecha de Expiración (MM/AA):</label>
                 <input type="text" id="fecha-expiracion" maxlength="5" required>
 
-                <label for="codigo-seguridad">Código de Seguridad:</label>
-                <input type="password" id="codigo-seguridad" maxlength="3" required>
+                <label for="codigo_seguridad">Código de Seguridad:</label>
+                <div class="codigo_seguridad">
+                    <input type="password" id="codigo_seguridad" maxlength="3" required>
+                    <button type="button" id="ver_contraseña" onclick="verContra()">Mostrar</button>
+                </div>
 
                 <label for="nombre-titular">Nombre del Titular:</label>
                 <input type="text" id="nombre-titular" required>
 
                 <label for="pais">País de Emisión:</label>
                 <select id="pais" required>
-                    <!-- Opciones de países -->
                     <option value="colombia">Colombia</option>
                     <option value="usa">USA</option>
                     <option value="mexico">México</option>
-                    <!-- Agregar otros países -->
                 </select>
 
                 <label for="tipo-tarjeta">Tipo de Tarjeta:</label>
@@ -69,7 +70,7 @@
             </form>
         </section>
     </main>
+    <script src="array.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
- 

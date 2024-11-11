@@ -224,6 +224,15 @@ function obtenerDatos(clave) {
     return JSON.parse(localStorage.getItem(clave));
 }
 
+// Función para guardar y obtener datos en localStorage
+function guardarDatos(clave, valor) {
+    localStorage.setItem(clave, JSON.stringify(valor));
+}
+
+function obtenerDatos(clave) {
+    return JSON.parse(localStorage.getItem(clave));
+}
+
 // Cargar el resumen de compra en el carrito
 function cargarResumenCompra() {
     const carrito = obtenerDatos("productosSeleccionados") || [];
@@ -301,13 +310,36 @@ function validarNumeroTarjeta(event) {
 
 function validarNombreTitular(event) {
     const input = event.target;
-    input.value = input.value.replace(/[^a-zA-Z\s]/g, "");
+    input.value = input.value.replace(/[^a-zA-Z\s]/g, ""); // Solo letras y espacios
 }
 
-function toggleCodigoSeguridad() {
-    const inputCodigo = document.getElementById("codigo-seguridad");
-    inputCodigo.type = inputCodigo.type === "password" ? "text" : "password";
+function verContra() {
+    const inputCodigo = document.getElementById("codigo_seguridad");
+    const boton = document.getElementById("ver_contraseña");
+    
+    if (inputCodigo.type === "password") {
+        inputCodigo.type = "text";
+        boton.textContent = "Ocultar";
+    } else {
+        inputCodigo.type = "password";
+        boton.textContent = "Mostrar";
+    }
 }
+
+
+// Confirmar compra y limpiar datos
+function confirmarCompra(event) {
+    event.preventDefault(); // Previene el envío del formulario
+    alert("Compra confirmada exitosamente.");
+    
+    // Limpia solo la información del carrito y datos de compra
+    localStorage.removeItem("productosSeleccionados");
+    localStorage.removeItem("datosCompra");
+    
+    // Redirige a la vista 1
+    window.location.href = "index.html";
+}
+
 
 // Funciones de navegación
 function cancelarCompra() {
@@ -316,14 +348,6 @@ function cancelarCompra() {
 
 function seguirComprando() {
     window.location.href = "productos.html";
-}
-
-// Confirmar compra y limpiar datos
-function confirmarCompra(event) {
-    event.preventDefault();
-    alert("Compra confirmada exitosamente.");
-    localStorage.clear();
-    window.location.href = "index.html";
 }
 
 // Inicializar eventos y carga de datos solo si los elementos están presentes
@@ -339,3 +363,4 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("form-pago").addEventListener("submit", confirmarCompra);
     }
 });
+
