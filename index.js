@@ -347,7 +347,7 @@ function cancelarCompra() {
 }
 
 function seguirComprando() {
-    window.location.href = "productos.html";
+    window.location.href = "producto.html";
 }
 
 // Inicializar eventos y carga de datos solo si los elementos están presentes
