@@ -126,34 +126,43 @@ function obtenerProductosConRetardo() {
     });
 }
 
-// Función para aplicar los filtros
 function aplicarFiltros() {
     const categoria = document.getElementById("filtroCategoria").value;
     const precioMin = parseFloat(document.getElementById("filtroPrecioMin").value) || 0;
     const precioMax = parseFloat(document.getElementById("filtroPrecioMax").value) || Infinity;
 
-    productosVisibles = productos.filter(producto =>
-        (categoria === "" || producto.categoria === categoria) &&
-        producto.precio >= precioMin &&
-        producto.precio <= precioMax
-    );
+    // Filtrar productos por categoría y rango de precios
+    productosVisibles = productos.filter(producto => {
+        const cumpleCategoria = categoria === "" || producto.categoria === categoria;
+        const cumplePrecio = producto.precio >= precioMin && producto.precio <= precioMax;
+        return cumpleCategoria && cumplePrecio;
+    });
 
-    desplazamiento = 0;
-    document.getElementById("lista-productos").innerHTML = "";
-    obtenerProductosConRetardo();
+    desplazamiento = 0; // Reiniciar el desplazamiento para scroll
+    document.getElementById("lista-productos").innerHTML = ""; // Limpiar productos en el DOM
+    obtenerProductosConRetardo(); // Cargar productos filtrados
 }
 
-// Función para limpiar los filtros
+
 function limpiarFiltros() {
+    // Limpiar los valores de los filtros en el DOM
     document.getElementById("filtroCategoria").value = "";
     document.getElementById("filtroPrecioMin").value = "";
     document.getElementById("filtroPrecioMax").value = "";
 
-    productosVisibles = productos;
-    desplazamiento = 0;
+    // Restablecer productos visibles a todos los productos y resetear desplazamiento
+    productosVisibles = productos;  // Asegúrate de que 'productos' es la lista completa de productos
+    desplazamiento = 0;             // Restablece el desplazamiento para el scroll
+    cargando = false;               // Asegura que la bandera de carga esté en falso
+
+    // Limpiar la lista de productos en el DOM y cargar productos desde el inicio
     document.getElementById("lista-productos").innerHTML = "";
-    obtenerProductosConRetardo();
+    obtenerProductosConRetardo();   // Carga inicial de productos
+
+    // Asegura que el evento de scroll se active nuevamente
+    window.addEventListener("scroll", manejarScroll);
 }
+
 
 // Función para manejar el evento de scroll
 function manejarScroll() {
@@ -233,14 +242,13 @@ function obtenerDatos(clave) {
     return JSON.parse(localStorage.getItem(clave));
 }
 
-// Cargar el resumen de compra en el carrito
 function cargarResumenCompra() {
     const carrito = obtenerDatos("productosSeleccionados") || [];
     const datosCompra = obtenerDatos("datosCompra") || {};
     const tablaProductos = document.getElementById("tabla-productos").querySelector("tbody");
     let total = 0;
 
-    // Mostrar datos generales de la compra
+    // Mostrar datos generales de la compra, incluyendo la cantidad máxima de artículos
     document.getElementById("nombre-comprador").textContent = `Nombre: ${datosCompra.nombre || ''}`;
     document.getElementById("presupuesto-max").textContent = `Presupuesto Máximo: COP ${datosCompra.presupuesto ? datosCompra.presupuesto.toLocaleString() : ''}`;
     document.getElementById("cantidad-max").textContent = `Cantidad Máxima de Artículos: ${datosCompra.cantidadMax || ''}`;
@@ -294,6 +302,7 @@ function cargarResumenCompra() {
     document.getElementById("total-compra").textContent = `Total de Compra: COP ${total.toLocaleString()}`;
 }
 
+
 // Función para eliminar un producto del carrito
 function eliminarDelCarrito(idProducto) {
     let carrito = obtenerDatos("productosSeleccionados") || [];
@@ -327,18 +336,34 @@ function verContra() {
 }
 
 
-// Confirmar compra y limpiar datos
 function confirmarCompra(event) {
-    event.preventDefault(); // Previene el envío del formulario
+    event.preventDefault(); // Prevenir el envío del formulario
+
+    const carrito = obtenerDatos("productosSeleccionados") || [];
+    const datosCompra = obtenerDatos("datosCompra") || {};
+    
+    // Calcular el total de productos y el total de costo de la compra
+    const totalProductos = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    const totalCosto = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
+
+    // Verificar las condiciones de la compra
+    if (totalProductos > 20) {
+        alert("No es posible completar la compra. Se ha excedido el límite de 20 productos.");
+        return;
+    }
+
+    if (datosCompra.presupuesto < totalCosto) {
+        alert("No es posible completar la compra. El presupuesto es insuficiente para cubrir el total de la compra.");
+        return;
+    }
+
+    // Si cumple las condiciones, completar la compra
     alert("Compra confirmada exitosamente.");
-    
-    // Limpia solo la información del carrito y datos de compra
-    localStorage.removeItem("productosSeleccionados");
-    localStorage.removeItem("datosCompra");
-    
-    // Redirige a la vista 1
-    window.location.href = "index.html";
+    localStorage.clear(); // Limpiar el almacenamiento después de confirmar
+    window.location.href = "index.html"; // Redirigir a la página inicial
 }
+
+
 
 
 // Funciones de navegación
@@ -359,7 +384,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("tarjeta")) {
         document.getElementById("tarjeta").addEventListener("input", validarNumeroTarjeta);
         document.getElementById("nombre-titular").addEventListener("input", validarNombreTitular);
-        document.getElementById("boton-toggle-codigo").addEventListener("click", toggleCodigoSeguridad);
         document.getElementById("form-pago").addEventListener("submit", confirmarCompra);
     }
 });
