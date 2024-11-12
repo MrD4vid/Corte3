@@ -5,7 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg,#b8bed4,#3870ad, #3079c8);
     margin: 0;
     padding: 0;
 }
