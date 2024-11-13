@@ -287,7 +287,6 @@ function confirmarCompra(event) {
     botonConfirmar.disabled = true;
     alert("Procesando la compra, por favor espera...");
 
-    // Promesa para validar la compra
     new Promise((resolve, reject) => {
         const tiempoEspera = Math.random() * (3000 - 2000) + 2000;
         setTimeout(() => {
@@ -297,7 +296,7 @@ function confirmarCompra(event) {
             if (numeroTarjeta.length !== 16 || isNaN(numeroTarjeta)) {
                 reject("El número de tarjeta ingresado es inválido.");
             } else if (codigoSeguridad.length !== 3 || isNaN(codigoSeguridad)) {
-                reject("El código de seguridad ingresado es inválido.");
+                reject("El código de seguridad ingresado es inválido, deben ser numeros.");
             } else {
                 resolve("Compra confirmada exitosamente.");
             }
