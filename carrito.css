@@ -1,6 +1,4 @@
-/* carrito.css */
 
-/* Estilo base */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -11,7 +9,7 @@ body {
     padding: 0;
 }
 
-/* Header con estilo similar al de productos */
+
 header {
     width: 100%;
     max-width: 1200px;
@@ -51,7 +49,6 @@ header button:hover {
     color: #fff;
 }
 
-/* Estructura principal */
 main {
     display: flex;
     gap: 20px;
@@ -61,7 +58,6 @@ main {
     box-sizing: border-box;
 }
 
-/* Estilo de las secciones de resumen y pago */
 #resumen-compra, #pago {
     background-color: white;
     padding: 20px;
@@ -74,7 +70,6 @@ main {
     margin-top: 0;
 }
 
-/* Tabla de productos */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -95,7 +90,6 @@ th, td {
     margin-top: 15px;
 }
 
-/* Estilos para el formulario de pago */
 #form-pago input, #form-pago select {
     width: 100%;
     margin-bottom: 15px;

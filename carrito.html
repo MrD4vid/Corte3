@@ -22,11 +22,11 @@
             <table id="tabla-productos">
                 <thead>
                     <tr>
+                        <th>Imagen</th>
                         <th>Producto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Total</th>
-                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -36,7 +36,7 @@
 
         <section id="pago">
             <h2>Información de Pago</h2>
-            <form id="form-pago" onsubmit="return confirmarCompra(event)">
+            <form id="form-pago">
                 <label for="tarjeta">Número de Tarjeta:</label>
                 <input type="text" id="tarjeta" maxlength="16" required>
 

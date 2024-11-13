@@ -1,10 +1,10 @@
 
-// const PRODUCTOS ="productos";
+const PRODUCTOS ="productos";
 
-//     function guardarDatos(key, data) {
-//       const dataString = JSON.stringify(data);
-//       localStorage.setItem(key, dataString);
-//   }
+    function guardarDatos(key, data) {
+      const dataString = JSON.stringify(data);
+      localStorage.setItem(key, dataString);
+  }
     
     const productos = [
     // Deportivos
@@ -418,5 +418,5 @@
 
    
 
-  // guardarDatos(PRODUCTOS,productos);
+  guardarDatos(PRODUCTOS,productos);
   

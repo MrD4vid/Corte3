@@ -17,6 +17,11 @@ function iniciarCompra() {
         return;
     }
 
+    if (!/^[a-zA-Z\s]+$/.test(nombre)) {
+        alert("El nombre solo puede contener letras y espacios.");
+        return;
+    }
+
     if (isNaN(presupuesto) || presupuesto <= 0) {
         alert("Por favor, ingrese un presupuesto válido en COP (mayor a 0).");
         return;
@@ -259,12 +264,13 @@ function confirmarCompra(event) {
 
     const carrito = obtenerDatos("productosSeleccionados") || [];
     const datosCompra = obtenerDatos("datosCompra") || {};
+    const botonConfirmar = document.querySelector("#form-pago button[type='submit']");
 
     if (carrito.length === 0) {
         alert("No hay ningún producto para comprar.");
         return;
     }
-    
+
     const totalProductos = carrito.reduce((acc, item) => acc + item.cantidad, 0);
     const totalCosto = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
 
@@ -278,9 +284,34 @@ function confirmarCompra(event) {
         return;
     }
 
-    alert("Compra confirmada exitosamente.");
-    localStorage.clear();
-    window.location.href = "index.html";
+    botonConfirmar.disabled = true;
+    alert("Procesando la compra, por favor espera...");
+
+    // Promesa para validar la compra
+    new Promise((resolve, reject) => {
+        const tiempoEspera = Math.random() * (3000 - 2000) + 2000;
+        setTimeout(() => {
+            const numeroTarjeta = document.getElementById("tarjeta").value;
+            const codigoSeguridad = document.getElementById("codigo_seguridad").value;
+
+            if (numeroTarjeta.length !== 16 || isNaN(numeroTarjeta)) {
+                reject("El número de tarjeta ingresado es inválido.");
+            } else if (codigoSeguridad.length !== 3 || isNaN(codigoSeguridad)) {
+                reject("El código de seguridad ingresado es inválido.");
+            } else {
+                resolve("Compra confirmada exitosamente.");
+            }
+        }, tiempoEspera);
+    })
+    .then((mensaje) => {
+        alert(mensaje);
+        localStorage.clear();
+        window.location.href = "index.html";
+    })
+    .catch((error) => {
+        alert(error);
+        botonConfirmar.disabled = false;
+    });
 }
 
 function cancelarCompra() {
